@@ -1,69 +1,457 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Guía Turística de Tingo María</title>
-  <meta name="description" content="Explora Tingo María, sus atractivos turísticos, cultura, gastronomía y mucho más.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tingo María - Guía Turística</title>
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #8BC34A;
+            --accent-color: #FFC107;
+            --dark-color: #1B5E20;
+            --light-color: #F1F8E9;
+            --text-color: #333;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://example.com/tingo-maria-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            color: var(--white);
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        header p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+        
+        nav {
+            background-color: var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 15px 0;
+        }
+        
+        nav ul li {
+            margin: 0 20px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--dark-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        section {
+            margin-bottom: 60px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto;
+        }
+        
+        .attraction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .attraction-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .attraction-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .attraction-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .attraction-card:hover .attraction-img img {
+            transform: scale(1.1);
+        }
+        
+        .attraction-info {
+            padding: 20px;
+        }
+        
+        .attraction-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .contact-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header p {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1>Guía Turística de Tingo María</h1>
+    <header>
+        <h1>Tingo María</h1>
+        <p>La puerta de entrada a la Amazonía Peruana</p>
+        <a href="#atracciones" class="btn">Explora ahora</a>
+    </header>
+    
     <nav>
-      <ul>
-        <li><a href="#introduccion">Inicio</a></li>
-        <li><a href="#atractivos">Atractivos</a></li>
-        <li><a href="#gastronomia">Gastronomía</a></li>
-        <li><a href="#cultura">Cultura</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#atracciones">Atracciones</a></li>
+            <li><a href="#gastronomia">Gastronomía</a></li>
+            <li><a href="#alojamiento">Alojamiento</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
     </nav>
-  </header>
-
-  <section id="introduccion">
-    <h2>Bienvenidos a Tingo María</h2>
-    <p>Tingo María es conocida como "La Bella Durmiente", una ciudad ubicada en la selva central del Perú. Rodeada de naturaleza, cuevas, ríos y cascadas, es un destino perfecto para los amantes de la aventura y la tranquilidad.</p>
-    <img src="img/bella-durmiente.jpg" alt="La Bella Durmiente, Tingo María" width="600">
-  </section>
-
-  <section id="atractivos">
-    <h2>Atractivos Turísticos</h2>
-    <ul>
-      <li><strong>Parque Nacional Tingo María:</strong> hogar de la famosa montaña de la Bella Durmiente.</li>
-      <li><strong>Cueva de las Lechuzas:</strong> cueva natural con gran biodiversidad.</li>
-      <li><strong>Río Huallaga:</strong> ideal para paseos en bote y relajación.</li>
-      <li><strong>Catarata Santa Carmen:</strong> hermosa caída de agua en plena selva.</li>
-    </ul>
-  </section>
-
-  <section id="gastronomia">
-    <h2>Gastronomía Típica</h2>
-    <p>La comida en Tingo María mezcla sabores selváticos y andinos. Platos típicos incluyen:</p>
-    <ul>
-      <li>Juane</li>
-      <li>Tacacho con cecina</li>
-      <li>Inchicapi de gallina</li>
-      <li>Plátanos asados con queso</li>
-    </ul>
-  </section>
-
-  <section id="cultura">
-    <h2>Cultura y Tradiciones</h2>
-    <p>Tingo María celebra fiestas como San Juan y carnavales con danzas típicas, música regional y ferias artesanales. Su gente es alegre, hospitalaria y orgullosa de sus raíces amazónicas.</p>
-  </section>
-
-  <section id="contacto">
-    <h2>Contáctanos</h2>
-    <p>¿Quieres más información o visitas guiadas? Escríbenos:</p>
-    <ul>
-      <li>Email: info@turismotingomaria.pe</li>
-      <li>Teléfono: +51 999 999 999</li>
-      <li>Facebook: <a href="https://facebook.com/turismotingomaria" target="_blank">/turismotingomaria</a></li>
-    </ul>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Guía Turística de Tingo María. Todos los derechos reservados.</p>
-  </footer>
+    
+    <main class="container">
+        <section id="inicio">
+            <h2>Bienvenidos a Tingo María</h2>
+            <p>Tingo María, conocida como la "Ciudad de la Bella Durmiente", es una encantadora ciudad ubicada en la región de Huánuco, Perú. Rodeada de exuberante vegetación, cascadas impresionantes y montañas que forman el perfil de una mujer dormida, esta ciudad es el punto de partida perfecto para explorar la Amazonía peruana.</p>
+            <p>Con un clima tropical durante todo el año, Tingo María ofrece una combinación única de belleza natural, biodiversidad y cultura local que la convierten en un destino imperdible para los amantes de la naturaleza y la aventura.</p>
+        </section>
+        
+        <section id="atracciones">
+            <h2>Atracciones Principales</h2>
+            <div class="attraction-grid">
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://example.com/parque-nacional-tingo-maria.jpg" alt="Parque Nacional Tingo María">
+                    </div>
+                    <div class="attraction-info">
+                        <h3>Parque Nacional Tingo María</h3>
+                        <p>Área protegida que alberga la famosa Cueva de las Lechuzas y una gran diversidad de flora y fauna amazónica. Ideal para el ecoturismo y la observación de aves.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://example.com/bella-durmiente.jpg" alt="La Bella Durmiente">
+                    </div>
+                    <div class="attraction-info">
+                        <h3>La Bella Durmiente</h3>
+                        <p>Cadena montañosa que asemeja el perfil de una mujer recostada. Ofrece senderos para caminatas con vistas panorámicas espectaculares de la ciudad y la selva.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://example.com/catarata-santa-carmen.jpg" alt="Catarata Santa Carmen">
+                    </div>
+                    <div class="attraction-info">
+                        <h3>Catarata Santa Carmen</h3>
+                        <p>Hermosa cascada de 80 metros de altura rodeada de vegetación tropical. El lugar perfecto para refrescarse y disfrutar de la naturaleza en su estado más puro.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gastronomia">
+            <h2>Gastronomía Local</h2>
+            <p>La cocina tingalesa es una fusión de sabores andinos y amazónicos. Entre los platos típicos destacan:</p>
+            
+            <div class="attraction-grid" style="margin-top: 30px;">
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://example.com/juane.jpg" alt="Juane">
+                    </div>
+                    <div class="attraction-info">
+                        <h3>Juane</h3>
+                        <p>Plato tradicional hecho con arroz, gallina, huevos y especias, envuelto en hojas de bijao. Especialmente popular durante la Fiesta de San Juan.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://example.com/tacacho.jpg" alt="Tacacho con Cecina">
+                    </div>
+                    <div class="attraction-info">
+                        <h3>Tacacho con Cecina</h3>
+                        <p>Plato a base de plátano verde asado y machacado mezclado con manteca, servido con carne de cerdo seca y ahumada.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://example.com/inchicapi.jpg" alt="Inchicapi">
+                    </div>
+                    <div class="attraction-info">
+                        <h3>Inchicapi</h3>
+                        <p>Sopa espesa de maní con gallina, yuca, maíz y hierbas aromáticas, típica de la gastronomía amazónica.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="alojamiento">
+            <h2>Dónde Hospedarse</h2>
+            <p>Tingo María ofrece diversas opciones de alojamiento para todos los presupuestos, desde hoteles ecológicos hasta hostales económicos en el centro de la ciudad.</p>
+            
+            <div class="attraction-grid" style="margin-top: 30px;">
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://example.com/hotel-eco.jpg" alt="Hotel Ecológico">
+                    </div>
+                    <div class="attraction-info">
+                        <h3>Hoteles Ecológicos</h3>
+                        <p>Lodges en medio de la selva que ofrecen experiencias únicas de conexión con la naturaleza, con actividades guiadas y alimentación incluida.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://example.com/hotel-ciudad.jpg" alt="Hoteles en Ciudad">
+                    </div>
+                    <div class="attraction-info">
+                        <h3>Hoteles en la Ciudad</h3>
+                        <p>Opciones cómodas en el centro de Tingo María, con fácil acceso a restaurantes, mercados y puntos de transporte.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://example.com/hostal.jpg" alt="Hostales Económicos">
+                    </div>
+                    <div class="attraction-info">
+                        <h3>Hostales Económicos</h3>
+                        <p>Para viajeros con presupuesto limitado, ofrecen habitaciones básicas pero limpias y buen servicio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="galeria">
+            <h2>Galería de Imágenes</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://example.com/tingo-1.jpg" alt="Vista de Tingo María">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://example.com/tingo-2.jpg" alt="Cascada en Tingo María">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://example.com/tingo-3.jpg" alt="Mercado local">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://example.com/tingo-4.jpg" alt="Río en Tingo María">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://example.com/tingo-5.jpg" alt="Flora local">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://example.com/tingo-6.jpg" alt="Atardecer en Tingo María">
+                </div>
+            </div>
+        </section>
+        
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Dirección</h3>
+                    <p>Oficina de Turismo de Tingo María<br>Plaza de Armas s/n<br>Tingo María, Huánuco</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Teléfono</h3>
+                    <p>+51 62 562314<br>Lunes a Viernes: 8am - 5pm</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>turismo@tingomaria.gob.pe</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 Guía Turística de Tingo María. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>Desarrollado con ❤️ para los amantes de la naturaleza</p>
+    </footer>
 </body>
 </html>
